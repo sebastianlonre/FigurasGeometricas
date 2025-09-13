@@ -1,5 +1,6 @@
 import math
-from figuraGeometrica import FiguraGeometrica  # type: ignore 
+from figuraGeometrica import FiguraGeometrica
+from excepciones import ValorGeometricoInvalido
 
 class Circulo(FiguraGeometrica):
     def __init__(self, radio: float):
@@ -11,9 +12,9 @@ class Circulo(FiguraGeometrica):
         return self._radio
 
     @radio.setter
-    def radio(self, valor: float):
+    def radio(self, valor):
         if valor <= 0:
-            raise ValueError("El radio debe ser un número positivo.")
+            raise ValorGeometricoInvalido("El radio debe ser positivo.")
         self._radio = float(valor)
 
     def area(self) -> float:
