@@ -1,0 +1,26 @@
+import math
+from figuraGeometrica import FiguraGeometrica  # type: ignore 
+
+class Circulo(FiguraGeometrica):
+    def __init__(self, radio: float):
+        super().__init__(lados=0)      
+        self.radio = radio             
+
+    @property
+    def getRadio(self) -> float:
+        return self._radio
+
+    @radio.setter
+    def radio(self, valor: float):
+        if valor <= 0:
+            raise ValueError("El radio debe ser un número positivo.")
+        self._radio = float(valor)
+
+    def area(self) -> float:
+        return math.pi * (self.radio ** 2)
+
+    def perimetro(self) -> float:
+        return 2 * math.pi * self.radio
+
+    def __str__(self) -> str:
+        return f"Circulo(radio={self.radio})"
