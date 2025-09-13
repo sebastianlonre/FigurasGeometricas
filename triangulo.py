@@ -4,63 +4,61 @@ class ValorGeometricoInvalido(ValueError):
     pass
 
 class Triangulo:
+    """Triángulo definido por tres lados."""
     def __init__(self, lado1, lado2, lado3):
-        self.__lado1 = 0.0
-        self.__lado2 = 0.0
-        self.__lado3 = 0.0
-        # usar setters para validar
-        self.lado1 = lado1
-        self.lado2 = lado2
-        self.lado3 = lado3
-        self.__validar_triangulo()
+        self.__l1 = float(lado1)
+        self.__l2 = float(lado2)
+        self.__l3 = float(lado3)
 
-    # propiedades simples
-    @property
-    def lado1(self) -> float:
-        return self.__lado1
-
-    @lado1.setter
-    def lado1(self, v: float) -> None:
-        v = float(v)
-        if v <= 0:
+        if self.__l1 <= 0 or self.__l2 <= 0 or self.__l3 <= 0:
             raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
-        self.__lado1 = v
 
-    @property
-    def lado2(self) -> float:
-        return self.__lado2
-
-    @lado2.setter
-    def lado2(self, v: float) -> None:
-        v = float(v)
-        if v <= 0:
-            raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
-        self.__lado2 = v
-
-    @property
-    def lado3(self) -> float:
-        return self.__lado3
-
-    @lado3.setter
-    def lado3(self, v: float) -> None:
-        v = float(v)
-        if v <= 0:
-            raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
-        self.__lado3 = v
-
-    def __validar_triangulo(self) -> None:
-        a, b, c = self.__lado1, self.__lado2, self.__lado3
-        if not (a + b > c and a + c > b and b + c > a):
+        # Desigualdad triangular
+        if not (self.__l1 + self.__l2 > self.__l3 and
+                self.__l1 + self.__l3 > self.__l2 and
+                self.__l2 + self.__l3 > self.__l1):
             raise ValorGeometricoInvalido("No cumple la desigualdad triangular.")
 
-    # API básica
-    def perimetro(self) -> float:
-        return self.__lado1 + self.__lado2 + self.__lado3
+    @property
+    def lado1(self):
+        return self.__l1
 
-    def area(self) -> float:
+    @lado1.setter
+    def lado1(self, v):
+        v = float(v)
+        if v <= 0:
+            raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
+        self.__l1 = v
+
+    @property
+    def lado2(self):
+        return self.__l2
+
+    @lado2.setter
+    def lado2(self, v):
+        v = float(v)
+        if v <= 0:
+            raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
+        self.__l2 = v
+
+    @property
+    def lado3(self):
+        return self.__l3
+
+    @lado3.setter
+    def lado3(self, v):
+        v = float(v)
+        if v <= 0:
+            raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
+        self.__l3 = v
+
+    def perimetro(self):
+        return self.__l1 + self.__l2 + self.__l3
+
+    def area(self):
+        # Fórmula de Herón
         s = self.perimetro() / 2.0
-        a, b, c = self.__lado1, self.__lado2, self.__lado3
-        return math.sqrt(s * (s - a) * (s - b) * (s - c))
+        return math.sqrt(s * (s - self.__l1) * (s - self.__l2) * (s - self.__l3))
 
-    def __str__(self) -> str:
-        return f"Triangulo(l1={self.__lado1}, l2={self.__lado2}, l3={self.__lado3})"
+    def __str__(self):
+        return f"Triangulo(l1={self.__l1}, l2={self.__l2}, l3={self.__l3})"
