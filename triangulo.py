@@ -1,23 +1,18 @@
 import math
-
+from figuraGeometrica import FiguraGeometrica
 class ValorGeometricoInvalido(ValueError):
     pass
 
-class Triangulo:
+class Triangulo(FiguraGeometrica):
     """Triángulo definido por tres lados."""
     def __init__(self, lado1, lado2, lado3):
+
         self.__l1 = float(lado1)
         self.__l2 = float(lado2)
         self.__l3 = float(lado3)
-
         if self.__l1 <= 0 or self.__l2 <= 0 or self.__l3 <= 0:
             raise ValorGeometricoInvalido("Cada lado debe ser > 0.")
-
-        # Desigualdad triangular
-        if not (self.__l1 + self.__l2 > self.__l3 and
-                self.__l1 + self.__l3 > self.__l2 and
-                self.__l2 + self.__l3 > self.__l1):
-            raise ValorGeometricoInvalido("No cumple la desigualdad triangular.")
+        super().__init__(lados=3) 
 
     @property
     def lado1(self):
@@ -54,11 +49,14 @@ class Triangulo:
 
     def perimetro(self):
         return self.__l1 + self.__l2 + self.__l3
+    
+    def validarDesigualdad(self):
+        if not (self.__l1 + self.__l2 > self.__l3 and
+                self.__l1 + self.__l3 > self.__l2 and
+                self.__l2 + self.__l3 > self.__l1):
+            self.__mensajeValidacion = "No cumple con la desigualdad triangular."
 
     def area(self):
         # Fórmula de Herón
         s = self.perimetro() / 2.0
         return math.sqrt(s * (s - self.__l1) * (s - self.__l2) * (s - self.__l3))
-
-    def __str__(self):
-        return f"Triangulo(l1={self.__l1}, l2={self.__l2}, l3={self.__l3})"
