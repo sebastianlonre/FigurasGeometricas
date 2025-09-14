@@ -1,6 +1,7 @@
 from circulo import Circulo
 from rectangulo import Rectangulo
 from triangulo import Triangulo
+from excepciones import ValorGeometricoInvalido
 
 def menu():
 
@@ -14,7 +15,7 @@ def menu():
         match(seleccion):
             case 1:
                 figuraCreada = crearFigura()
-                
+
                 if figuraCreada.ok:
                     figuras.append(figuraCreada)
                     print("se creo con exito la figura")
@@ -52,8 +53,10 @@ def crearFigura():
                 lado2 = float(input("Ingrese el lado 2: "))
                 lado3 = float(input("Ingrese el lado 3: "))
                 trianguloCreado = Triangulo(lado1, lado2, lado3)
-                
-                trianguloCreado.validarDesigualdad()
+                try:
+                    trianguloCreado.validarDesigualdad()
+                except ValorGeometricoInvalido as e:
+                    print(f"error: {e}")
                 
                 return trianguloCreado
 

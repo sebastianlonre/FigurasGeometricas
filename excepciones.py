@@ -1,11 +1,13 @@
 class ValorGeometricoInvalido(Exception):
     """
     Se lanza cuando se recibe un dato geométrico imposible o no positivo:
-    • radio ≤ 0
-    • lado/altura/base ≤ 0
+    • radio < 0
+    • lado/altura/base < 0
     • triángulo que viola la desigualdad triangular
     """
-    pass
+    def __init__(self, mensaje):
+        self.mensaje = mensaje
+        super().__init__(self.mensaje)
 
 
 class FiguraNoEncontrada(Exception):

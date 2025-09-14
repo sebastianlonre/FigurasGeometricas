@@ -1,3 +1,5 @@
+from excepciones import ValorGeometricoInvalido
+
 class FiguraGeometrica:
     def __init__(self, lados):
         self.__lados = lados
@@ -28,5 +30,5 @@ class FiguraGeometrica:
     def validarMedidaLado(self, lados):
         for lado in lados:
             if lado < 0:
-                self.mensajeValidacion = "Todos los lados deben de medir mas de 0, la figura no se guardara"
-                print(self.mensajeValidacion)
+                self.mensajeValidacion = "Longitud no valida, debe de ser mayor a 0, la figura no se guardara"
+                raise ValorGeometricoInvalido(self.mensajeValidacion)

@@ -34,33 +34,26 @@ class Circulo(FiguraGeometrica):
         -----
         La validación se delega al *setter* ``radio``.
         """
-        super().__init__(lados=0)      
-        self.__radio = radio       
+        self.__radio = radio
+        super().__init__(lados=0)
+        try:
+            self.validarMedidaLado([radio])
+        except ValorGeometricoInvalido as e:
+            print(f"error: {e}")       
               
     # -----------------------------------------------------------------
     # Propiedad con validación
     # -----------------------------------------------------------------
     @property
-    def getRadio(self) -> float:
+    def radio(self) -> float:
         """float: radio actual del círculo."""
         return self._radio
 
+    @radio.setter
     def radio(self, valor):
         """
-        Asigna un nuevo valor al radio tras comprobar que sea positivo.
-
-        Parametros
-        ----------
-        valor : float
-            Nuevo radio.
-
-        Raises
-        ------
-        ValorGeometricoInvalido
-            Si ``valor`` ≤ 0.
+        Asigna un nuevo valor al radio
         """
-        if valor <= 0:
-            raise ValorGeometricoInvalido("El radio debe ser positivo.")
         self.__radio = float(valor)
 
     def area(self) -> float:
@@ -91,9 +84,3 @@ class Circulo(FiguraGeometrica):
         :math:`P = 2\\pi r`
         """ 
         return 2 * math.pi * self.radio
-
-    # -----------------------------------------------------------------
-    # Representación legible
-    # -----------------------------------------------------------------
-    def __str__(self) -> str:
-        return f"Circulo(radio={self.radio})"

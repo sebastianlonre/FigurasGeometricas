@@ -1,15 +1,20 @@
 import math
 from figuraGeometrica import FiguraGeometrica
+from excepciones import ValorGeometricoInvalido
 
 class Triangulo(FiguraGeometrica):
     """Triángulo definido por tres lados."""
     def __init__(self, lado1, lado2, lado3):
-        self.validarMedidaLado([lado1, lado2, lado3])
         self.__l1 = float(lado1)
         self.__l2 = float(lado2)
         self.__l3 = float(lado3)
+
+        try:
+            self.validarMedidaLado([lado1, lado2, lado3])
+        except ValorGeometricoInvalido as e:
+            print(f"error: {e}")
         super().__init__(lados=3)
-        
+
     @property
     def lado1(self):
         return self.__l1
@@ -47,3 +52,4 @@ class Triangulo(FiguraGeometrica):
                 self.__l1 + self.__l3 > self.__l2 and
                 self.__l2 + self.__l3 > self.__l1):
             self.mensajeValidacion = "No cumple con la desigualdad triangular."
+            raise ValorGeometricoInvalido(self.mensajeValidacion)
