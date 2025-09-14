@@ -5,6 +5,7 @@ from excepciones import ValorGeometricoInvalido
 from imprimirFiguras import imprimirFiguras
 from totalConjunto import totalConjunto
 from filtrar import filtrarData
+from eliminarElemento import eliminarElemento
 
 def menu():
 
@@ -31,7 +32,9 @@ def menu():
             case 4:
                 seleccionarFiltro(figuras)
             case 5:
-                print("eliminar figuras")
+                listaConFiguraEliminada = eliminarElemento(figuras)
+                figuras = listaConFiguraEliminada
+                imprimirFiguras(figuras)
             case 6:
                 validacion = False
             case _:
