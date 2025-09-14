@@ -4,6 +4,7 @@ from triangulo import Triangulo
 from excepciones import ValorGeometricoInvalido
 from imprimirFiguras import imprimirFiguras
 from totalConjunto import totalConjunto
+from filtrar import filtrarData
 
 def menu():
 
@@ -28,7 +29,7 @@ def menu():
             case 3:
                 totalConjunto(figuras)
             case 4:
-                print("filtrar tipo")
+                seleccionarFiltro(figuras)
             case 5:
                 print("eliminar figuras")
             case 6:
@@ -61,4 +62,17 @@ def crearFigura():
                     print(f"error: {e}")
                 
                 return trianguloCreado
+
+def seleccionarFiltro(figuras):
+
+    print("Filtrar por tipo\na) Círculo\nb) Rectángulo\nc) Triángulo")
+    seleccion = input("Elige tipo (a/b/c): ")
+    match(seleccion):
+        case "a":
+            filtrarData(figuras, "Circulo")
+        case "b":
+            filtrarData(figuras, "Rectangulo")
+        case "c":
+            filtrarData(figuras, "Triangulo")
+
 
