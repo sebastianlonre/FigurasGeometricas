@@ -4,25 +4,24 @@ from excepciones import ValorGeometricoInvalido
 class Rectangulo(FiguraGeometrica):
     def __init__(self, base: float, altura: float):
         super().__init__(lados=4)      
+        self.validarMedidaLado([base, altura])
         self.__base = base
         self.__altura = altura             
 
     @property
-    def getBase(self) -> float:
+    def base(self) -> float:
         return self._base
 
+    @base.setter
     def base(self, valor):
-        if valor <= 0:
-            raise ValorGeometricoInvalido("La base debe ser positivo.")
         self._base = float(valor)
 
     @property
-    def getAltura(self) -> float:
+    def altura(self) -> float:
         return self._altura
 
+    @altura.setter
     def altura(self, valor):
-        if valor <= 0:
-            raise ValorGeometricoInvalido("La altura debe ser positivo.")
         self._altura = float(valor)
 
     def area(self) -> float:

@@ -9,8 +9,7 @@ class Triangulo(FiguraGeometrica):
         self.__l2 = float(lado2)
         self.__l3 = float(lado3)
         super().__init__(lados=3)
-
-
+        
     @property
     def lado1(self):
         return self.__l1
@@ -38,13 +37,13 @@ class Triangulo(FiguraGeometrica):
     def perimetro(self):
         return self.__l1 + self.__l2 + self.__l3
     
+    def area(self):
+        # Fórmula de Herón
+        s = self.perimetro() / 2.0
+        return math.sqrt(s * (s - self.__l1) * (s - self.__l2) * (s - self.__l3))
+    
     def validarDesigualdad(self):
         if not (self.__l1 + self.__l2 > self.__l3 and
                 self.__l1 + self.__l3 > self.__l2 and
                 self.__l2 + self.__l3 > self.__l1):
             self.mensajeValidacion = "No cumple con la desigualdad triangular."
-
-    def area(self):
-        # Fórmula de Herón
-        s = self.perimetro() / 2.0
-        return math.sqrt(s * (s - self.__l1) * (s - self.__l2) * (s - self.__l3))

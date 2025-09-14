@@ -14,6 +14,7 @@ def menu():
         match(seleccion):
             case 1:
                 figuraCreada = crearFigura()
+                
                 if figuraCreada.ok:
                     figuras.append(figuraCreada)
                     print("se creo con exito la figura")

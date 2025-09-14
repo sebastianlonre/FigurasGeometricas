@@ -28,5 +28,5 @@ class FiguraGeometrica:
     def validarMedidaLado(self, lados):
         for lado in lados:
             if lado < 0:
-                self.mensajeValidacion = "Todos los lados deben de medir mas de 0"
+                self.mensajeValidacion = "Todos los lados deben de medir mas de 0, la figura no se guardara"
                 print(self.mensajeValidacion)
