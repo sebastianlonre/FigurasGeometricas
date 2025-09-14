@@ -4,10 +4,12 @@ class FiguraGeometrica:
         self.__mensajeValidacion = ""
         self.__ok = True
 
-    def getLados(self):
+    @property
+    def lados(self):
         return self.__lados
 
-    def setLados(self, numeroLados):
+    @lados.setter
+    def lados(self, numeroLados):
         self.__lados = numeroLados
 
     @property
@@ -22,3 +24,9 @@ class FiguraGeometrica:
     @property
     def ok(self):
         return self.__ok
+    
+    def validarMedidaLado(self, lados):
+        for lado in lados:
+            if lado < 0:
+                self.mensajeValidacion = "Todos los lados deben de medir mas de 0"
+                print(self.mensajeValidacion)

@@ -16,9 +16,9 @@ def menu():
                 figuraCreada = crearFigura()
                 if figuraCreada.ok:
                     figuras.append(figuraCreada)
+                    print("se creo con exito la figura")
                 else:
-                    print("entro")
-                    print(figuraCreada.__mensajeValidacion)
+                    print(figuraCreada.mensajeValidacion)
             case 2:
                 print(figuras)
             case 3:
