@@ -3,6 +3,7 @@ from rectangulo import Rectangulo
 from triangulo import Triangulo
 from excepciones import ValorGeometricoInvalido
 from imprimirFiguras import imprimirFiguras
+from totalConjunto import totalConjunto
 
 def menu():
 
@@ -25,7 +26,7 @@ def menu():
             case 2:
                 imprimirFiguras(figuras)
             case 3:
-                print("totales area")
+                totalConjunto(figuras)
             case 4:
                 print("filtrar tipo")
             case 5:
