@@ -53,3 +53,6 @@ class Triangulo(FiguraGeometrica):
                 self.__l2 + self.__l3 > self.__l1):
             self.mensajeValidacion = "No cumple con la desigualdad triangular."
             raise ValorGeometricoInvalido(self.mensajeValidacion)
+        
+    def __str__(self) -> str:
+        return f"Triangulo(Lado 1={self.lado1}, Lado 2={self.lado2}, Lado 3={self.lado3})"

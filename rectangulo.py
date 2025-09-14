@@ -15,25 +15,25 @@ class Rectangulo(FiguraGeometrica):
 
     @property
     def base(self) -> float:
-        return self._base
+        return self.__base
 
     @base.setter
     def base(self, valor):
-        self._base = float(valor)
+        self.__base = float(valor)
 
     @property
     def altura(self) -> float:
-        return self._altura
+        return self.__altura
 
     @altura.setter
     def altura(self, valor):
         self._altura = float(valor)
 
     def area(self) -> float:
-        return (self.__base * self.__altura)/2
+        return self.base * self.altura
 
     def perimetro(self) -> float:
-        return 2 * (self.__base * self.__altura)
+        return 2 * (self.base * self.altura)
 
     def __str__(self) -> str:
         return f"Rectangulo(base={self.base}, altura={self.altura})"

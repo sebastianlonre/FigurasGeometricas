@@ -2,6 +2,7 @@ from circulo import Circulo
 from rectangulo import Rectangulo
 from triangulo import Triangulo
 from excepciones import ValorGeometricoInvalido
+from imprimirFiguras import imprimirFiguras
 
 def menu():
 
@@ -22,7 +23,7 @@ def menu():
                 else:
                     print(figuraCreada.mensajeValidacion)
             case 2:
-                print(figuras)
+                imprimirFiguras(figuras)
             case 3:
                 print("totales area")
             case 4:
